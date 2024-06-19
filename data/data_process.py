@@ -42,6 +42,20 @@ She wrote a letter to her friend.
 '''
 corpus = corpus.split('\n')
 corpus.remove('')
+data = []
+voc = set()
+for sentence in corpus:
+    sentence = sentence.strip('.').replace("'", '')
+    sentence = sentence.lower()
+    words = sentence.split(' ')
+    for word in words:
+        voc.add(word)
+    data.append(words)
+
 with open(r'data/corpus.pkl', 'wb') as f:
-    pickle.dump(corpus, f)
+    pickle.dump(data, f)
 print("corpus creation done.")
+
+with open(r'data/voc.pkl', 'wb') as f:
+    pickle.dump(voc, f)
+print("voc creation done.")
